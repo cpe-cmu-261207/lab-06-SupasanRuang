@@ -16,6 +16,7 @@ export default function Home() {
       alert(`Invalid number of user`);
       return;
     }
+
     const resp = await axios.get(
       `https://randomuser.me/api/?results=${counter}&inc=name,email,location,picture`
     );
@@ -42,12 +43,13 @@ export default function Home() {
       <div className="d-flex justify-content-center align-items-center fs-5 gap-2">
         Number of User(s)
         <input
+          onChange={(event) => {
+            setCounter(event.target.value);
+          }}
+          value={counter}
           className="form-control text-center"
           style={{ maxWidth: "100px" }}
           type="number"
-          onClick={(event) => {
-            setCounter(event.target.value);
-          }}
         />
         <button class="btn btn-dark" onClick={() => genUsers()}>
           Generate
